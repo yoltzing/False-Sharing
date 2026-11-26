@@ -16,10 +16,14 @@ Mostrar que un programa paralelo con resultados correctos puede ir más lento qu
 ---
 
 ## Contexto  
-
+El false sharing (o falso compartimiento) ocurre cuando hilos en distintos núcleos de CPU modifican variables independientes que comparten la misma línea de caché (normalmente de 64 bytes). Aunque los datos no se comparten lógicamente, el hardware trata toda la línea como una unidad y provoca rebotes constantes de coherencia de caché que degradan el rendimiento.
 ---
 
 ## Teoria
+Caché: La caché es una memoria pequeña pero ultrarrápida que guarda copias temporales de datos o instrucciones usadas con frecuencia para que el sistema pueda acceder a ellas mucho más rápido que si tuviera que ir hasta la fuente original (como la memoria RAM, el disco o la red). 
+Cache Line: La unidad mínima de transferencia y almacenamiento de datos entre la memoria caché de la CPU (L1, L2, L3) y la memoria principal (RAM). 
+Protocolo MESI: algoritmo estándar que utilizan los procesadores multinúcleo para mantener la coherencia de caché. (Modifies, Exclusive, Shared, Invalid)
+PIP: (Priority Inheritance Protocol o PIP): mecanismo de concurrencia y sistemas en tiempo real que mitiga la inversión de prioridad: cuando una tarea de alta prioridad se bloquea esperando un recurso retenido por una de baja prioridad, la tarea de baja prioridad hereda temporalmente la prioridad alta para evitar ser desplazada por tareas intermedias, terminar su sección crítica y liberar el recurso más rápido, recuperando luego su prioridad original.
 
 ---
 
